@@ -73,20 +73,12 @@ export default function Footer() {
             </h4>
             <div className="space-y-2.5">
               <div className="flex justify-between text-sm">
-                <span className="text-zinc-400">Terça a Sexta</span>
-                <span className="text-zinc-300 font-medium">18:00 - 23:00</span>
+                <span className="text-zinc-400">Domingo a Quinta</span>
+                <span className="text-zinc-300 font-medium">18:00 - 23:30</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-zinc-400">Sábado</span>
-                <span className="text-zinc-300 font-medium">17:00 - 00:00</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-zinc-400">Domingo</span>
-                <span className="text-zinc-300 font-medium">17:00 - 23:00</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-zinc-400">Segunda</span>
-                <span className="text-neon-red text-xs font-medium">Fechado</span>
+                <span className="text-zinc-400">Sexta e Sábado</span>
+                <span className="text-neon-yellow font-medium">18:00 - 23:59</span>
               </div>
             </div>
           </div>

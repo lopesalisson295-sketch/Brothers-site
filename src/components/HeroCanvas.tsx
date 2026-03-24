@@ -45,7 +45,7 @@ export default function HeroCanvas() {
     let zoom = 1;
 
     if (isMobile) {
-      zoom = 1.55; // Zoom in 55% on mobile to hide watermark and bring pizza closer
+      zoom = 2.4; // Zoom in aggressively on mobile to fill more vertical space
       
       // On mobile, show the entire image width so it doesn't get cut off
       if (imgRatio > canvasRatio) {
@@ -74,9 +74,8 @@ export default function HeroCanvas() {
     drawX = (canvas.width - drawWidth) / 2;
     drawY = (canvas.height - drawHeight) / 2;
 
-    // Fill background with same dark color as brand to blend seamlessly
-    ctx.fillStyle = "#050505";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Clear previous frame
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
   }, []);
@@ -156,10 +155,16 @@ export default function HeroCanvas() {
   }, [drawFrame]);
 
   return (
-    <section id="inicio" ref={containerRef} className="relative w-full h-screen overflow-hidden bg-brand-darker">
+    <section id="inicio" ref={containerRef} className="relative w-full h-screen overflow-hidden bg-brand-dark">
+      {/* Texture overlay for premium feel */}
+      <div 
+        className="absolute inset-0 opacity-10 pointer-events-none z-0"
+        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }}
+      />
+      
       {/* Preloader */}
       {!isLoaded && (
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-brand-darker">
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-brand-dark">
           <div className="text-center space-y-6">
             <h2 className="text-3xl font-serif font-bold text-white neon-text-red animate-pulse">
               Os Brothers
@@ -180,8 +185,12 @@ export default function HeroCanvas() {
       {/* Canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ opacity: isLoaded ? 1 : 0 }}
+        className="absolute inset-0 w-full h-full mix-blend-screen scale-110 sm:scale-100 z-10"
+        style={{ 
+          opacity: isLoaded ? 1 : 0,
+          maskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%)",
+          WebkitMaskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%)"
+        }}
       />
 
       {/* Subtle bottom gradient only */}
