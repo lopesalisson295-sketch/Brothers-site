@@ -45,7 +45,7 @@ export default function HeroCanvas() {
     let zoom = 1;
 
     if (isMobile) {
-      zoom = 2.4; // Zoom in aggressively on mobile to fill more vertical space
+      zoom = 1.35; // Moderate zoom so the sides aren't completely cut off during scene changes
       
       // On mobile, show the entire image width so it doesn't get cut off
       if (imgRatio > canvasRatio) {
@@ -188,8 +188,8 @@ export default function HeroCanvas() {
         className="absolute inset-0 w-full h-full mix-blend-screen scale-110 sm:scale-100 z-10"
         style={{ 
           opacity: isLoaded ? 1 : 0,
-          maskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%)",
-          WebkitMaskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%)"
+          maskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)",
+          WebkitMaskImage: "radial-gradient(circle at center, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)"
         }}
       />
 
