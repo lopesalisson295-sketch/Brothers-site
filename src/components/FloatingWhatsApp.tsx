@@ -2,7 +2,7 @@
 
 import { MessageCircle } from "lucide-react";
 
-const whatsappNumber = "5585999999999"; // Replace with actual WhatsApp number
+const whatsappNumber = "558596456730"; // WhatsApp number
 
 export default function FloatingWhatsApp() {
   return (

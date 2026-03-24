@@ -42,34 +42,37 @@ export default function HeroCanvas() {
     let drawY: number;
 
     const isMobile = canvas.width < 768;
+    let zoom = 1;
 
     if (isMobile) {
+      zoom = 1.55; // Zoom in 55% on mobile to hide watermark and bring pizza closer
+      
       // On mobile, show the entire image width so it doesn't get cut off
       if (imgRatio > canvasRatio) {
         drawWidth = canvas.width;
         drawHeight = canvas.width / imgRatio;
-        drawX = 0;
-        drawY = (canvas.height - drawHeight) / 2;
       } else {
         drawHeight = canvas.height;
         drawWidth = canvas.height * imgRatio;
-        drawX = (canvas.width - drawWidth) / 2;
-        drawY = 0;
       }
     } else {
+      zoom = 1.15; // Zoom in 15% on desktop to just crop the Veo watermark
+      
       // On desktop, use object-fit: cover to fill the screen
       if (imgRatio > canvasRatio) {
         drawHeight = canvas.height;
         drawWidth = canvas.height * imgRatio;
-        drawX = (canvas.width - drawWidth) / 2;
-        drawY = 0;
       } else {
         drawWidth = canvas.width;
         drawHeight = canvas.width / imgRatio;
-        drawX = 0;
-        drawY = (canvas.height - drawHeight) / 2;
       }
     }
+
+    // Apply zoom and calculate centering
+    drawWidth *= zoom;
+    drawHeight *= zoom;
+    drawX = (canvas.width - drawWidth) / 2;
+    drawY = (canvas.height - drawHeight) / 2;
 
     // Fill background with same dark color as brand to blend seamlessly
     ctx.fillStyle = "#050505";

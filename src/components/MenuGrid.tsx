@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 // ============ CONFIG ============
-const whatsappNumber = "5585999999999"; // Replace with actual WhatsApp number
+const whatsappNumber = "558596456730"; // WhatsApp number
 
 // ============ MENU DATA ============
 type MenuItem = {

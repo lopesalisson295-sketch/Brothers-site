@@ -20,7 +20,7 @@ function FacebookIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-const whatsappNumber = "5585999999999"; // Replace with actual WhatsApp number
+const whatsappNumber = "558596456730"; // WhatsApp number
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -99,9 +99,10 @@ export default function Footer() {
             </h4>
             <div className="space-y-3">
               <p className="text-zinc-400 text-sm leading-relaxed">
-                Rua Exemplo, 123<br />
-                Bairro Centro<br />
-                Fortaleza, CE - 60000-000
+                Rua Passo Fundo, 1333<br />
+                Bairro Genibaú<br />
+                Fortaleza, CE - 60534-640<br />
+                Brasil
               </p>
               <a
                 href="https://maps.google.com"
@@ -128,7 +129,7 @@ export default function Footer() {
                 className="flex items-center gap-2 text-zinc-400 text-sm hover:text-whatsapp transition-colors duration-300"
               >
                 <Phone size={14} />
-                (85) 9 9999-9999
+                (85) 9645-6730
               </a>
               <a
                 href="mailto:contato@osbrotherspizzaria.com.br"
