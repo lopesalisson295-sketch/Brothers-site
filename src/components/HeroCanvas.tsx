@@ -23,7 +23,7 @@ export default function HeroCanvas() {
     return `${IMAGE_PATH}${frameNumber}.jpg`;
   }, []);
 
-  // Draw frame with cover-fit logic
+  // Draw frame with responsive scaling logic
   const drawFrame = useCallback((frameIndex: number) => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
@@ -41,19 +41,40 @@ export default function HeroCanvas() {
     let drawX: number;
     let drawY: number;
 
-    if (imgRatio > canvasRatio) {
-      drawHeight = canvas.height;
-      drawWidth = canvas.height * imgRatio;
-      drawX = (canvas.width - drawWidth) / 2;
-      drawY = 0;
+    const isMobile = canvas.width < 768;
+
+    if (isMobile) {
+      // On mobile, show the entire image width so it doesn't get cut off
+      if (imgRatio > canvasRatio) {
+        drawWidth = canvas.width;
+        drawHeight = canvas.width / imgRatio;
+        drawX = 0;
+        drawY = (canvas.height - drawHeight) / 2;
+      } else {
+        drawHeight = canvas.height;
+        drawWidth = canvas.height * imgRatio;
+        drawX = (canvas.width - drawWidth) / 2;
+        drawY = 0;
+      }
     } else {
-      drawWidth = canvas.width;
-      drawHeight = canvas.width / imgRatio;
-      drawX = 0;
-      drawY = (canvas.height - drawHeight) / 2;
+      // On desktop, use object-fit: cover to fill the screen
+      if (imgRatio > canvasRatio) {
+        drawHeight = canvas.height;
+        drawWidth = canvas.height * imgRatio;
+        drawX = (canvas.width - drawWidth) / 2;
+        drawY = 0;
+      } else {
+        drawWidth = canvas.width;
+        drawHeight = canvas.width / imgRatio;
+        drawX = 0;
+        drawY = (canvas.height - drawHeight) / 2;
+      }
     }
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Fill background with same dark color as brand to blend seamlessly
+    ctx.fillStyle = "#050505";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
     ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
   }, []);
 
